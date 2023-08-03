@@ -2,11 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { Pokemon } from '../pokemon.model';
 import { Router } from '@angular/router';
 import { PokemonService } from '../pokemon.service';
+
 @Component({
   selector: 'app-list-pokemon',
-  templateUrl: './list-pokemon.component.html',
-  styles: [
-  ]
+  templateUrl: './list-pokemon.component.html'
 })
 export class ListPokemonComponent implements OnInit {
   pokemonList: Pokemon[];
@@ -17,7 +16,8 @@ export class ListPokemonComponent implements OnInit {
   ){}
 
   ngOnInit(){
-    this.pokemonList = this.pokemonService.getPokemonList();
+    this.pokemonService.getPokemonList()
+      .subscribe(pokemonList => this.pokemonList = pokemonList);
   }
 
   goToPokemon(pokemon: Pokemon){
